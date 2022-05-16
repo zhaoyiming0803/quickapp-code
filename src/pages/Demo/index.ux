@@ -9,6 +9,13 @@
       value="跳转到详情页"
       onclick="onDetailBtnClick"
     />
+    <input
+      class="btn"
+      type="button"
+      value="扫码"
+      onclick="onScan"
+    />
+    <text>{{ codeContent }}</text>
     <!-- <web 
       src="https://www.baidu.com" 
       class="iframe" 
@@ -30,27 +37,13 @@ export default {
   // 页面级组件的数据模型，影响传入数据的覆盖机制：private内定义的属性不允许被覆盖
   private: {
     title: '欢迎体验快应用开发',
+    codeContent: ''
   },
 
   onInit() {
     console.log('test1: ', test1())
     console.log('test2: ', test2())
     console.log('fetch: ', fetch)
-
-    barcode.scan({
-      success: res => {
-        console.log('scan code success: ', res)
-      },
-      fail: res => {
-        console.log('scan code fail: ', res)
-      },
-      complete: res => {
-        console.log('scan code complete: ', res)
-      },
-      cancel: res => {
-        console.log('scan code cancel: ', res)
-      }
-    })
 
     storage.set({
       key: 'hello-storage',
@@ -92,6 +85,27 @@ export default {
       uri: '/pages/DemoDetail',
     })
   },
+
+  onScan () {
+    barcode.scan({
+      success: res => {
+        console.log('scan code success: ', res)
+        this.codeContent = 'success: ' + res.result
+      },
+      fail: res => {
+        console.log('scan code fail: ', res)
+        this.codeContent = 'fail: ' + res.result
+      },
+      // complete: res => {
+      //   console.log('scan code complete: ', res)
+      //   this.codeContent = 'complete: ' + res.result
+      // },
+      cancel: res => {
+        console.log('scan code cancel: ', res)
+        this.codeContent = 'cancel: ' + res.result
+      }
+    })
+  }
 }
 </script>
 
