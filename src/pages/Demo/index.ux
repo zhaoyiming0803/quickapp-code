@@ -28,10 +28,10 @@
 import router from '@system.router'
 import fetch from '@system.fetch'
 
-import { test1, test2 } from './test'
+import { test1, test2, barcode } from './test'
 
 const storage = require('@system.storage')
-const barcode = require('@system.barcode')
+
 
 export default {
   // 页面级组件的数据模型，影响传入数据的覆盖机制：private内定义的属性不允许被覆盖
