@@ -25,13 +25,10 @@
 </template>
 
 <script>
-import router from '@system.router'
-import fetch from '@system.fetch'
+import { test1 } from './test1'
+import AuthingMove from './bundle'
 
-import { test1, test2, barcode } from './test'
-
-const storage = require('@system.storage')
-
+const { barcode, fetch, router, storage } = require('./lib')
 
 export default {
   // 页面级组件的数据模型，影响传入数据的覆盖机制：private内定义的属性不允许被覆盖
@@ -42,7 +39,6 @@ export default {
 
   onInit() {
     console.log('test1: ', test1())
-    console.log('test2: ', test2())
     console.log('fetch: ', fetch)
 
     storage.set({
