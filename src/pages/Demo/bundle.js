@@ -543,24 +543,6 @@
   }
   
   
-  /***/ }),
-  /* 20 */
-  /***/ ((__unused_webpack_module, __authing_webpack_exports__, __authing_webpack_require__) => {
-  
-  __authing_webpack_require__.r(__authing_webpack_exports__);
-  /* harmony export */ __authing_webpack_require__.d(__authing_webpack_exports__, {
-  /* harmony export */   "funcA": () => (/* binding */ funcA),
-  /* harmony export */   "funcB": () => (/* binding */ funcB)
-  /* harmony export */ });
-  function funcA () {
-    return 'funcA'
-  }
-  
-  function funcB () {
-    return 'funcB'
-  }
-  
-  
   /***/ })
   /******/ ]);
   /************************************************************************/
@@ -640,15 +622,10 @@
   /* harmony export */ });
   /* harmony import */ var _authing_authingmove_core__WEBPACK_IMPORTED_MODULE_0__ = __authing_webpack_require__(1);
   /* harmony import */ var _authing_authingmove_api_proxy__WEBPACK_IMPORTED_MODULE_1__ = __authing_webpack_require__(5);
-  /* harmony import */ var _test__WEBPACK_IMPORTED_MODULE_2__ = __authing_webpack_require__(20);
-  
-  
   
   
   
   _authing_authingmove_core__WEBPACK_IMPORTED_MODULE_0__["default"].use(_authing_authingmove_api_proxy__WEBPACK_IMPORTED_MODULE_1__["default"])
-  
-  console.log((0,_test__WEBPACK_IMPORTED_MODULE_2__.funcA)())
   
   const storageRes = /* AuthingMove replacement */AuthingMove.setStorage({
     key: 'setStorageKey',
@@ -656,7 +633,8 @@
       a: 1,
       b: 2,
       c: 3,
-      d: 4
+      d: 4,
+      e: 5
     },
     success: res => {
       console.log('wx.setStorage success: ', res)
