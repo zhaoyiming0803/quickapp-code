@@ -14,8 +14,6 @@
   
   (0,_global_api__WEBPACK_IMPORTED_MODULE_1__.initGlobalApi)(_instance__WEBPACK_IMPORTED_MODULE_0__["default"])
   
-  _instance__WEBPACK_IMPORTED_MODULE_0__["default"].version = "0.0.1-alpha.0"
-  
   /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_instance__WEBPACK_IMPORTED_MODULE_0__["default"]);
   
   
@@ -28,6 +26,7 @@
   /* harmony export */   "default": () => (/* binding */ AuthingMove)
   /* harmony export */ });
   function AuthingMove () {}
+  
   
   /***/ }),
   /* 3 */
@@ -60,19 +59,19 @@
       if (installedPlugins.indexOf(plugin) > -1) {
         return this
       }
-    
+  
       const args = [options]
-    
+  
       args.unshift(this)
-    
+  
       if (typeof plugin.install === 'function') {
         plugin.install.apply(plugin, args)
       } else if (typeof plugin === 'function') {
         plugin.apply(null, args)
       }
-    
+  
       installedPlugins.push(plugin)
-    
+  
       return this
     }
   }
@@ -165,7 +164,7 @@
       apis[api] = (...args) => {
         let from = options.from
         const to = options.to
-        
+  
         if (args.length) {
           from = args.pop()
   
@@ -180,7 +179,7 @@
         if (options.custom[fromTo] && options.custom[fromTo][api]) {
           return options.custom[fromTo][api].apply(this, args)
         }
-        
+  
         if (_apis__WEBPACK_IMPORTED_MODULE_1__[api]) {
           return _apis__WEBPACK_IMPORTED_MODULE_1__[api].apply(this, args)
         }
@@ -240,9 +239,9 @@
   
   function noop () {}
   
-  function adaptOptions (originalOptions, matchedOptions, extraOptions) {
+  function adaptOptions (originalOptions, matchedOptions = {}, extraOptions = {}) {
     let options = {}
-    
+  
     Object.keys(originalOptions).forEach(key => {
       const _key = matchedOptions.hasOwnProperty(key) ? matchedOptions[key] : key
       if (_key) {
@@ -279,29 +278,29 @@
     const noopEnv = {}
   
     switch ("qa_ux") {
-      case 'wx':
-      case 'Mpx':
-        return wx
-      case 'ali':
-        return my
-      case 'baidu':
-        return swan
-      case 'qq':
-        return qq
-      case 'tt':
-        return tt
-      case 'jd':
-        return jd
-      case 'ks':
-        return ks
-      case 'qa_webview':
-        return qa
-      case 'qa_ux':
-        return noopEnv
-      case 'Taro':
-        return Taro
-      case 'uni':
-        return uni
+    case 'wx':
+    case 'Mpx':
+      return wx
+    case 'ali':
+      return my
+    case 'baidu':
+      return swan
+    case 'qq':
+      return qq
+    case 'tt':
+      return tt
+    case 'jd':
+      return jd
+    case 'ks':
+      return ks
+    case 'qa_webview':
+      return qa
+    case 'qa_ux':
+      return noopEnv
+    case 'Taro':
+      return Taro
+    case 'uni':
+      return uni
     }
   }
   
@@ -312,7 +311,6 @@
   
   __authing_webpack_require__.r(__authing_webpack_exports__);
   /* harmony export */ __authing_webpack_require__.d(__authing_webpack_exports__, {
-  /* harmony export */   "clearStorage": () => (/* reexport safe */ _storage_storage__WEBPACK_IMPORTED_MODULE_3__.clearStorage),
   /* harmony export */   "getStorage": () => (/* reexport safe */ _storage_storage__WEBPACK_IMPORTED_MODULE_3__.getStorage),
   /* harmony export */   "login": () => (/* reexport safe */ _login_login__WEBPACK_IMPORTED_MODULE_0__.login),
   /* harmony export */   "removeStorage": () => (/* reexport safe */ _storage_storage__WEBPACK_IMPORTED_MODULE_3__.removeStorage),
@@ -371,10 +369,15 @@
   /* harmony export */ });
   /* harmony import */ var _system_fetch__WEBPACK_IMPORTED_MODULE_0__ = __authing_webpack_require__(13);
   /* harmony import */ var _system_fetch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__authing_webpack_require__.n(_system_fetch__WEBPACK_IMPORTED_MODULE_0__);
+  /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __authing_webpack_require__(7);
+  
   
   
   function request (options = {}) {
-    return _system_fetch__WEBPACK_IMPORTED_MODULE_0___default().fetch(options)
+    const _options = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.adaptOptions)(options, {
+      dataType: 'responseType'
+    })
+    return _system_fetch__WEBPACK_IMPORTED_MODULE_0___default().fetch(_options)
   }
   
   
@@ -420,7 +423,6 @@
   
   __authing_webpack_require__.r(__authing_webpack_exports__);
   /* harmony export */ __authing_webpack_require__.d(__authing_webpack_exports__, {
-  /* harmony export */   "clearStorage": () => (/* binding */ clearStorage),
   /* harmony export */   "getStorage": () => (/* binding */ getStorage),
   /* harmony export */   "removeStorage": () => (/* binding */ removeStorage),
   /* harmony export */   "setStorage": () => (/* binding */ setStorage)
@@ -440,10 +442,6 @@
   
   function getStorage (options = {}) {
     return _system_storage__WEBPACK_IMPORTED_MODULE_0___default().get(options)
-  }
-  
-  function clearStorage () {
-    return _system_storage__WEBPACK_IMPORTED_MODULE_0___default().clear()
   }
   
   function removeStorage (options = {}) {
@@ -545,6 +543,24 @@
   }
   
   
+  /***/ }),
+  /* 20 */
+  /***/ ((__unused_webpack_module, __authing_webpack_exports__, __authing_webpack_require__) => {
+  
+  __authing_webpack_require__.r(__authing_webpack_exports__);
+  /* harmony export */ __authing_webpack_require__.d(__authing_webpack_exports__, {
+  /* harmony export */   "funcA": () => (/* binding */ funcA),
+  /* harmony export */   "funcB": () => (/* binding */ funcB)
+  /* harmony export */ });
+  function funcA () {
+    return 'funcA'
+  }
+  
+  function funcB () {
+    return 'funcB'
+  }
+  
+  
   /***/ })
   /******/ ]);
   /************************************************************************/
@@ -622,46 +638,52 @@
   /* harmony export */ __authing_webpack_require__.d(__authing_webpack_exports__, {
   /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
   /* harmony export */ });
-  /* harmony import */ var _AuthingMove_core__WEBPACK_IMPORTED_MODULE_0__ = __authing_webpack_require__(1);
-  /* harmony import */ var _AuthingMove_api_proxy__WEBPACK_IMPORTED_MODULE_1__ = __authing_webpack_require__(5);
+  /* harmony import */ var _authing_authingmove_core__WEBPACK_IMPORTED_MODULE_0__ = __authing_webpack_require__(1);
+  /* harmony import */ var _authing_authingmove_api_proxy__WEBPACK_IMPORTED_MODULE_1__ = __authing_webpack_require__(5);
+  /* harmony import */ var _test__WEBPACK_IMPORTED_MODULE_2__ = __authing_webpack_require__(20);
   
   
   
-  _AuthingMove_core__WEBPACK_IMPORTED_MODULE_0__["default"].use(_AuthingMove_api_proxy__WEBPACK_IMPORTED_MODULE_1__["default"])
+  
+  
+  _authing_authingmove_core__WEBPACK_IMPORTED_MODULE_0__["default"].use(_authing_authingmove_api_proxy__WEBPACK_IMPORTED_MODULE_1__["default"])
+  
+  console.log((0,_test__WEBPACK_IMPORTED_MODULE_2__.funcA)())
   
   const storageRes = /* AuthingMove replacement */AuthingMove.setStorage({
     key: 'setStorageKey',
     data: {
       a: 1,
       b: 2,
-      c: 3
+      c: 3,
+      d: 4
     },
     success: res => {
       console.log('wx.setStorage success: ', res)
     }
-  }).then(res => {
-    console.log('wx.setStorage then: ', res)
   })
   
   console.log('storageRes: ', storageRes)
   
-  // wx.scanCode({
-  //   success: res => {
-  //     console.log('wx.scanCode: ', res)
-  //   }
+  /* AuthingMove replacement */AuthingMove.getStorage({
+    key: 'ssdf'
+  })
+    .then(res => {
+      console.log('wx.getStorage then: ', res)
+    })
+    .catch(res => {
+      console.log('wx.getStorage catch: ', res)
+    })
+  
+  // wx.scanCode({}).then(res => {
+  //   console.log('wx.scanCode then: ', res)
   // })
   
-  _AuthingMove_core__WEBPACK_IMPORTED_MODULE_0__["default"].request({
+  /* AuthingMove replacement */AuthingMove.request({
     url: 'https://api.github.com/users/zhaoyiming0803',
-    responseType: 'text',
-    success: res => {
-      console.log('AuthingMove.request success: ', res)
-    },
-    fail: res => {
-      console.log('AuthingMove.request fail: ', res)
-    }
+    responseType: 'text'
   }).then(res => {
-    console.log('AuthingMove.request then: ', res)
+    console.log('wx.request then: ', res)
   })
   
   /* AuthingMove replacement */AuthingMove.login({
@@ -670,7 +692,7 @@
     }
   })
   
-  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_AuthingMove_core__WEBPACK_IMPORTED_MODULE_0__["default"]);
+  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
   
   })();
   
